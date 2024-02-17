@@ -39,14 +39,15 @@ AddBook("Harry Potter");
 AddBook("Lord of the Rings");
 
 function renderLibrary() {
-  shelf.innerHTML = ""
+  let d = ""
   for(let i = 0; i < myLibrary.length; i++) {
-    shelf.innerHTML += `
+    d += `
         <div class="card">
             <p>${myLibrary[i].title}</p>
             <button onclick="removeBook(${[i]})">Remove</button>
         </div>
     `
+    shelf.setHTML(d)
   }
 }   
 
