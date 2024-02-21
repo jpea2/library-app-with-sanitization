@@ -39,16 +39,33 @@ AddBook("Harry Potter");
 AddBook("Lord of the Rings");
 
 function renderLibrary() {
-  shelf.innerHTML = ""
-  for(let i = 0; i < myLibrary.length; i++) {
-    shelf.innerHTML += `
-        <div class="card">
-            <p>${myLibrary[i].title}</p>
-            <button onclick="removeBook(${[i]})">Remove</button>
-        </div>
-    `
-  }
-}   
+    // Clear existing content in the shelf
+    while (shelf.firstChild) {
+        shelf.removeChild(shelf.firstChild);
+    }
+
+    for (let i = 0; i < myLibrary.length; i++) {
+        // Create elements
+        var cardDiv = document.createElement("div");
+        cardDiv.classList.add("card");
+
+        var titleParagraph = document.createElement("p");
+        titleParagraph.textContent = myLibrary[i].title;
+
+        var removeButton = document.createElement("button");
+        removeButton.textContent = "Remove";
+        removeButton.addEventListener("click", function() {
+            removeBook(i);
+        });
+
+        // Append elements to cardDiv
+        cardDiv.appendChild(titleParagraph);
+        cardDiv.appendChild(removeButton);
+
+        // Append cardDiv to the shelf
+        shelf.appendChild(cardDiv);
+    }
+}
 
 
 
